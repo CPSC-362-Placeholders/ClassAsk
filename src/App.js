@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React.jsxtesting123
+          Learn React.jsxtlol
         </a>
       </header>
     </div>
