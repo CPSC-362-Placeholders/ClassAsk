@@ -10,6 +10,7 @@ function Register(){
         register(email, password);
         navigate('/');
     }
+
     return (
         <div>
             <h1>
