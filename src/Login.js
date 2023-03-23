@@ -47,7 +47,7 @@ function login(email, password) {
     $.ajax({
         url: 'http://localhost/classask/src/php/login.php',
         type: 'GET',
-        async: false, // is this safe?
+        async: false, 
         data: {email: email, password: password},
         success: function (data) {
             if(data === "Doesn't exist") {
