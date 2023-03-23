@@ -1,4 +1,5 @@
 import {Link, Outlet} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import $ from "jquery";
 
@@ -6,6 +7,16 @@ function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    const handleSignIn = () => {
+        if (login(email, password) === 0){
+            navigate('/homepage');
+        } else {
+            alert ("email/pw does not exist")
+        }        
+    }
 
     return (
         <>
@@ -23,7 +34,7 @@ function Login() {
                         <Link to={"/register"}>Register for an Account</Link>
                     </li>
                 </form>
-                <button onClick={() => login(email, password)}>Sign In</button>
+                <button onClick={() => handleSignIn()}>Sign In</button>
 
             </div>
             <Outlet/>
@@ -32,21 +43,28 @@ function Login() {
 }
 
 function login(email, password) {
+    var result;
     $.ajax({
         url: 'http://localhost/classask/src/php/login.php',
         type: 'GET',
+        async: false, 
         data: {email: email, password: password},
         success: function (data) {
             if(data === "Doesn't exist") {
                 console.log("data doesn't exist in db");
+                result = 1;
             } else {
                 console.log("data found in db");
+                result = 0;
             }
         },
         error: function () {
             console.log("error");
         }
     });
+    return result;
 }
+
+
 
 export default Login;

@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register.js';
 import Login from './Login.js';
+import Homepage from './Homepage.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function Index() {
@@ -12,6 +13,7 @@ function Index() {
             <Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/homepage" element={<Homepage/>}/>
             </Routes>
         </BrowserRouter>
     )
