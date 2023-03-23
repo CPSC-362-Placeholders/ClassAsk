@@ -12,17 +12,10 @@ function Login() {
 
     const handleSignIn = () => {
         if (login(email, password) === 0){
-            navigate('/login/homepage');
+            navigate('/homepage');
         } else {
             alert ("email/pw does not exist")
-        }
-        // if(login(email, password) === 0){
-        //     navigate('/login/homepage');
-        // } else {
-        //     alert("Email or password does not exist :/");
-        // }
-        
-
+        }        
     }
 
     return (

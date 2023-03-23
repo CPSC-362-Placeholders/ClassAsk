@@ -13,7 +13,7 @@ function Index() {
             <Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
-                <Route path="/login/homepage" element={<Homepage/>}/>
+                <Route path="/homepage" element={<Homepage/>}/>
             </Routes>
         </BrowserRouter>
     )
