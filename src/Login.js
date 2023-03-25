@@ -25,8 +25,8 @@ function Login() {
                     Login to your ClassAsk Account!
                 </h1>
                 <form>
-                    <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="CSUF Email"/><br></br>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password"/><br></br>
+                    <input type="email" id={"email"} onChange={(e) => setEmail(e.target.value)} placeholder="CSUF Email"/><br></br>
+                    <input type="password" id={"password"} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/><br></br>
                     <br></br>
                     <input type="checkbox"/> Remember Me<br></br>
                     <a href="#">Forgot your password?</a><br></br>
@@ -49,17 +49,19 @@ function login(email, password) {
         type: 'GET',
         async: false, 
         data: {email: email, password: password},
+        withCredentials: true,
         success: function (data) {
             if(data === "Doesn't exist") {
                 console.log("data doesn't exist in db");
                 result = 1;
             } else {
                 console.log("data found in db");
+                console.log(data);
                 result = 0;
             }
         },
-        error: function () {
-            console.log("error");
+        error: function (err) {
+            console.log(err);
         }
     });
     return result;
