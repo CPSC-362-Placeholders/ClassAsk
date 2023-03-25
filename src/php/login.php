@@ -10,8 +10,11 @@ if(isset($_GET['email']) && $_GET['password']) {
     $count = mysqli_num_rows($result);
 
     if($count == 1) {
-        $_SESSION['email'] = $email;
-        echo var_dump(session_id());
+        $array = mysqli_fetch_array($result);
+        $_SESSION['email'] = $array[0];
+        $_SESSION['first_name'] = $array[2];
+        $_SESSION['last_name'] = $array[3];
+        echo json_encode($_SESSION);
     } else {
         echo "Doesn't exist";
     }

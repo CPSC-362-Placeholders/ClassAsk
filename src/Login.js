@@ -57,6 +57,7 @@ function login(email, password) {
             } else {
                 console.log("data found in db");
                 console.log(data);
+                window.sessionStorage.setItem("session", data);
                 result = 0;
             }
         },

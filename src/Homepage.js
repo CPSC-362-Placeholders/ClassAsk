@@ -1,34 +1,14 @@
-import {useEffect} from "react";
-import $ from "jquery";
-
 function Homepage(){
-
-    useEffect(() => {
-        getData();
-    }, []);
-
-    function getData() {
-        $.ajax({
-            url: 'http://localhost/classask/src/php/homepage.php',
-            type: 'GET',
-            success: function (data) {
-                console.log(data);
-            },
-            error: function () {
-                return {};
-            }
-        })
-    }
-
+    let session = window.sessionStorage.getItem("session");
+    let parsed_session = JSON.parse(session);
+    let name = parsed_session.first_name + " " + parsed_session.last_name;
     return (
         <div>
             <h1>
-                test
+                {name}
             </h1>
         </div>
-    )
-
-
+    );
 }
 
 export default Homepage;
