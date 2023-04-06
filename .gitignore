@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # ignore connect.php
-php/connect.php
+!/src/php/connect.php
+src/php/connect.php
