@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("connect.php");
 
 if(isset($_GET['email']) && $_GET['password']) {
@@ -10,7 +10,11 @@ if(isset($_GET['email']) && $_GET['password']) {
     $count = mysqli_num_rows($result);
 
     if($count == 1) {
-        echo "'$email' and '$password' found in database!";
+        $array = mysqli_fetch_array($result);
+        $_SESSION['email'] = $array[0];
+        $_SESSION['first_name'] = $array[2];
+        $_SESSION['last_name'] = $array[3];
+        echo json_encode($_SESSION);
     } else {
         echo "Doesn't exist";
     }
