@@ -13,11 +13,4 @@
             array_push($classlist, $row[0]);
         }
     }
-    echo json_encode($classlist);
-
-   
-
-
-        
-    
-                
+    echo json_encode($classlist);               

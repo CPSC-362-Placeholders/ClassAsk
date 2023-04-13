@@ -1,4 +1,6 @@
 import $ from "jquery";
+//import React, { useState, useEffect } from 'react';
+
 
 function Homepage(){
     let session = window.sessionStorage.getItem("session");
@@ -18,7 +20,20 @@ function Homepage(){
             }
         })
     }
-
+    var subclass = () => {
+        $.ajax({
+            url: 'http://localhost/classask/src/php/subscribe.php',
+            type: 'POST', //modifys data 
+            async: false,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+        
+    }
 
     return (
         <>
@@ -28,8 +43,11 @@ function Homepage(){
                 <label>Choose a class</label> <br></br>
                 <select name="add a class" id="personal list">
                 <option value="class1">classoption1</option></select>
-                <input type="submit" value="submit" name="submit"></input>
-                <button onClick={() => classlist()}>test</button>
+                <br></br>
+                <button onClick={() => classlist()}>classlist</button>
+                <br></br>
+                 <button onClick={() => subclass()}>Subscribe</button>
+                 
                 
             </h1>
             
