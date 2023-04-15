@@ -1,9 +1,9 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials: true");
 $host = 'localhost:3306';
-$user = 'ismailhasan';
-$pass = 'Stripes12';
+$user = 'root';
+$pass = '';
 $db = 'classask';
 
 $conn = mysqli_connect($host, $user, $pass, $db);
