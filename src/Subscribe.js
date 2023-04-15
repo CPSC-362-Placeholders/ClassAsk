@@ -29,6 +29,10 @@ function Subscribe() {
                     navigate("/homepage");
                     window.location.reload();
                 }
+
+                if (data === "Already subscribed") {
+                    alert("You're already subscribed to this course! Find it on your homepage.");
+                }
             },
             error: function (err) {
                 console.log(err);
