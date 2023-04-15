@@ -6,6 +6,7 @@ function Homepage(){
     let session = window.sessionStorage.getItem("session");
     let parsed_session = JSON.parse(session);
     let name = parsed_session.first_name + " " + parsed_session.last_name;
+    let email = parsed_session.email;
 
 
     const [courseList, setCourseList] = useState();
@@ -27,13 +28,17 @@ function Homepage(){
         })
     }
     var subClass = () => {
+        console.log(email);
+        if(subscribe === undefined || subscribe === "classPlaceHolder"){
+            alert("invalid class selection");
+            return;
+        }
         $.ajax({
             url: 'http://localhost/classask/src/php/subscribe.php',
             type: 'POST', //modifys data 
             async: false,
-            data: {name:name},
+            data: {name:subscribe, email:email},
             success: function (data) {
-                setSubscribe();
                 console.log(data);
             },
             error: function (err) {
@@ -69,8 +74,9 @@ function Homepage(){
             <label>Welcome to ClassAsk!</label> <br></br>
                 {name}
                 <br></br>
-                <select name="classDropdown" id="classDropdown">
-                <option value="classPlaceHolder">choose a class</option></select>
+                <select name="classDropdown" id="classDropdown" onChange={(e)=> setSubscribe(e.target.value)} >
+                    <option value="classPlaceHolder">choose a class</option>
+                </select>
                 <br></br>
                 <button type="submit" name="saveSelect" onClick={() => subClass()}>Subscribe</button>
                  
