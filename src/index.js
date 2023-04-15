@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import Register from './Register.js';
 import Login from './Login.js';
 import Homepage from './Homepage.js';
+import Subscribe from "./Subscribe";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function Index() {
@@ -14,6 +15,7 @@ function Index() {
                 <Route path="/" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/homepage" element={<Homepage/>}/>
+                <Route path="/subscribe" element={<Subscribe/>} />
             </Routes>
         </BrowserRouter>
     )
