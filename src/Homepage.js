@@ -12,6 +12,12 @@ function Homepage() {
         window.location.reload();
     }
 
+    const signOut = () => {
+        window.sessionStorage.clear();
+        navigate('/'); // navigates to login page
+        window.location.reload();
+    }
+
     return (
         <>
             <div>
@@ -20,6 +26,9 @@ function Homepage() {
                     {name}
                 </h1>
                 <button onClick={() => subscribe()}>Subscribe to a course!</button>
+                <br/>
+                <br/>
+                <button onClick={() => signOut()}>Sign Out</button>
             </div>
         </>
     );
