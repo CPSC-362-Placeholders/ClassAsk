@@ -1,17 +1,16 @@
 <?php
     include("connect.php");
 
-    $query = "SELECT * FROM subscribedcourses";
-    $result = mysqli_query($conn, $query);
-    
     $email = $_GET['email'];
+    $query = "SELECT * FROM subscribedcourses WHERE email = '$email' ";
+    $result = mysqli_query($conn, $query);
+
+
     $subscribedcourses = array();
 
     if ($result!= null){
         while ($row = mysqli_fetch_array($result)){
-            if($row[0] == $email){
-                array_push($subscribedcourses, $row[1]);
-            }
+            array_push($subscribedcourses, $row[1]);
             
         }
     }
