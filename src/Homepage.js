@@ -31,7 +31,6 @@ function Homepage() {
             data: {email: email},
             success: function (data) {
                 setSubscribedCourses(data);
-                //document.getElementById("subcoursetext").innerHTML = subscribedCourses;
             },
             error: function (err) {
                 console.log(err);
@@ -49,11 +48,11 @@ function Homepage() {
             const array = JSON.parse(subscribedCourses); //checks the string and parses it into an object we can use
             const convertArray = Object.values(array); //object is being converted to an array each value
             convertArray.forEach(element => { // for each value named element in the array do work that creates a new element (option) which are then set to the element, which then adds a new line to the dropdown
-                const option = document.createElement("button");
-                option.innerHTML= element;
-                option.value = element;
-                option.text = element;
-                dropdown.appendChild(option);
+                const button = document.createElement("button");
+                button.innerHTML= element;
+                button.value = element;
+                button.text = element;
+                dropdown.appendChild(button);
                 var br = document.createElement("br"); // create a new line break element
                 dropdown.appendChild(br); // append the line break element after the button
             });
