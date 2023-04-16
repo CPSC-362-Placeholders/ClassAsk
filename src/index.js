@@ -6,16 +6,18 @@ import Register from './Register.js';
 import Login from './Login.js';
 import Homepage from './Homepage.js';
 import Subscribe from "./Subscribe";
+import CourseThread from "./CourseThread";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function Index() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login/>}/>
-                <Route path="/register" element={<Register/>}/>
-                <Route path="/homepage" element={<Homepage/>}/>
+                <Route path="/" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
+                <Route path="/homepage" element={<Homepage/>} />
                 <Route path="/subscribe" element={<Subscribe/>} />
+                <Route path="/thread" element={<CourseThread/>} />
             </Routes>
         </BrowserRouter>
     )

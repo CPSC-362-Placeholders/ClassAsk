@@ -1,4 +1,4 @@
-import $, { get } from "jquery";
+import $ from "jquery";
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 
@@ -21,7 +21,7 @@ function Homepage() {
     }
 
     const [subscribedCourses, setSubscribedCourses] = useState();
-
+    const [courseIds, setCourseIds] = useState();
 
     const getSubscribedCourses = () => {
         $.ajax({
@@ -38,28 +38,53 @@ function Homepage() {
         })
     };
 
+    const getCourseIds = (courses) => {
+        $.ajax({
+            url: 'http://localhost/classask/src/php/getCourseIds.php',
+            type: 'GET',
+            async: false,
+            data: {courses: courses},
+            success: function (data) {
+                setCourseIds(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    };
+
+    const openCourse = (id) => {
+        const url = '/thread?id=' + id;
+        navigate(url);
+        window.location.reload();
+    }
+
     useEffect(() => {
         getSubscribedCourses();
     }, []);
 
     useEffect(() => {
         if (subscribedCourses != null) {
-            const dropdown = document.getElementById("subscribedClassButtons");
-            const array = JSON.parse(subscribedCourses); //checks the string and parses it into an object we can use
-            const convertArray = Object.values(array); //object is being converted to an array each value
-            convertArray.forEach(element => { // for each value named element in the array do work that creates a new element (option) which are then set to the element, which then adds a new line to the dropdown
-                const button = document.createElement("button");
-                button.innerHTML= element;
-                button.value = element;
-                button.text = element;
-                dropdown.appendChild(button);
-                var br = document.createElement("br"); // create a new line break element
-                dropdown.appendChild(br); // append the line break element after the button
-            });
+            getCourseIds(subscribedCourses);
         }
-    }, [subscribedCourses])
+    }, [subscribedCourses]);
+
+    useEffect(() => {
+        if (courseIds !== undefined) {
+            let courseIdsArray = JSON.parse(courseIds);
+            let subscribedCoursesArray = JSON.parse(subscribedCourses);
+            let tempButtons = [];
+            for (let i = 0; i < courseIdsArray.length; ++i) {
+                tempButtons.push(<button
+                    onClick={() => openCourse(courseIdsArray[i])}>{subscribedCoursesArray[i]}</button>);
+                tempButtons.push(<br/>);
+            }
+            setButtons(tempButtons);
+        }
+    }, [courseIds]);
 
 
+    const [buttons, setButtons] = useState([]);
 
     return (
         <>
@@ -71,10 +96,10 @@ function Homepage() {
                 <button onClick={() => subscribe()}>Subscribe to a course!</button>
                 <br/>
                 <h2>
-                <p> My courses: </p>
-                <div name = "subscribedClassButtons" id = "subscribedClassButtons">
-
-                </div>
+                    <p> My courses: </p>
+                    <div>
+                        {buttons}
+                    </div>
                 </h2>
                 <br/>
                 <button onClick={() => signOut()}>Sign Out</button>

@@ -13,6 +13,7 @@ function Login() {
     const handleSignIn = () => {
         if (login(email, password) === 0){
             navigate('/homepage');
+            window.location.reload();
         } else {
             alert ("email/pw does not exist")
         }        

@@ -1,6 +1,5 @@
 <?php
     include("connect.php");
-    header("Access-Control-Allow-Origin: *");
 
 
     $query = "SELECT class_name FROM classlist";
