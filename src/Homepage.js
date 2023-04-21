@@ -31,6 +31,7 @@ function Homepage() {
             data: {email: email},
             success: function (data) {
                 setSubscribedCourses(data);
+                console.log(data);
             },
             error: function (err) {
                 console.log(err);
