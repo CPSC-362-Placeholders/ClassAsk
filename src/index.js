@@ -8,6 +8,7 @@ import Homepage from './Homepage.js';
 import Subscribe from "./Subscribe";
 import CourseThread from "./CourseThread";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreatePost from "./CreatePost";
 
 function Index() {
     return (
@@ -18,6 +19,7 @@ function Index() {
                 <Route path="/homepage" element={<Homepage/>} />
                 <Route path="/subscribe" element={<Subscribe/>} />
                 <Route path="/thread" element={<CourseThread/>} />
+                <Route path="/createpost" element={<CreatePost/>} />
             </Routes>
         </BrowserRouter>
     )
