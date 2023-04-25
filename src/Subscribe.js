@@ -12,6 +12,10 @@ function Subscribe() {
 
     const navigate = useNavigate();
 
+    const goToCourseCreation = () => {
+        navigate('/coursecreation');
+    }
+
     const subscribeToClass = () => {
         console.log(email);
         if (subscribe === undefined || subscribe === "classPlaceHolder") {
@@ -84,6 +88,10 @@ function Subscribe() {
             <br/>
             <br/>
             <button type="submit" onClick={() => subscribeToClass()}>Subscribe</button>
+
+            <br/>
+            <br/>
+            <button type="submit" onClick={() => goToCourseCreation()}>Create Course</button>
         </div>
     );
 

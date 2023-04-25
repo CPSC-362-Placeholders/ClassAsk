@@ -7,6 +7,7 @@ import Login from './Login.js';
 import Homepage from './Homepage.js';
 import Subscribe from "./Subscribe";
 import CourseThread from "./CourseThread";
+import CourseCreation from "./CourseCreation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from "./CreatePost";
 
@@ -20,6 +21,7 @@ function Index() {
                 <Route path="/subscribe" element={<Subscribe/>} />
                 <Route path="/thread" element={<CourseThread/>} />
                 <Route path="/createpost" element={<CreatePost/>} />
+                <Route path="/coursecreation" element={<CourseCreation/>} />
             </Routes>
         </BrowserRouter>
     )
