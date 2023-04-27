@@ -9,8 +9,13 @@ function CourseCreation(){
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        create(className, classCode, classNumber);
-        navigate('/subscribe');
+        if(window.confirm("Are you sure you want to create this course?")){
+            create(className, classCode, classNumber);
+            navigate('/subscribe');
+        } else {
+            
+        }
+
     }
 
     return (
