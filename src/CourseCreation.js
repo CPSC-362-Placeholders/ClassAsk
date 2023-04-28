@@ -45,11 +45,14 @@ function create(className, classCode, classNumber) {
         type: 'POST',
         data: {className: className, classCode: classCode, classNumber: classNumber},
         success: function (data) {
-            console.log(data);
-            alert("Successfully created course!");
+            if (data === "Already created") {
+                alert("A section already exists for that class! Find it in the subscribe drop down list.");
+            } else{
+                alert("Successfully created class. Find it in the subcribe drop down list.");
+            }
         },
-        error: function () {
-            alert("error");
+        error: function (err) {
+            console.log(err);
         }
     });
 }
