@@ -4,13 +4,12 @@ import {useNavigate} from "react-router-dom";
 function CourseCreation(){
     const [className, setClassName] = useState("");
     const [classCode, setClassCode] = useState(""); // class code will need to be divided into prefix and code/number 
-    const [classNumber, setClassNumber] = useState("");
 
     const navigate = useNavigate();
 
     const handleSubmit = () => {
         if(window.confirm("Are you sure you want to create this course?")){
-            create(className, classCode, classNumber);
+            create(className, classCode);
             navigate('/subscribe');
         } else {
             
@@ -30,8 +29,6 @@ function CourseCreation(){
                 <label>Course Code:</label>
                 <input type="text" id="classCode" onChange={(e) => setClassCode(e.target.value)}required /> <br/><br/>
 
-                <label>Class Number: </label>
-                <input type="text" id="classNumber" onChange={(e) => setClassNumber(e.target.value)}  required maxLength="5" /> <br/><br/>
             </form>
             <button onClick={() => handleSubmit()}> Submit </button>
 
@@ -39,11 +36,11 @@ function CourseCreation(){
     )
 }
 
-function create(className, classCode, classNumber) {
+function create(className, classCode) {
     $.ajax({
         url: 'http://localhost/classask/src/php/courseCreation.php',
         type: 'POST',
-        data: {className: className, classCode: classCode, classNumber: classNumber},
+        data: {className: className, classCode: classCode},
         success: function (data) {
             if (data === "Already created") {
                 alert("A section already exists for that class! Find it in the subscribe drop down list.");
