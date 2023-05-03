@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import $, { event } from 'jquery';
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 function CourseCreation(){
@@ -8,6 +8,19 @@ function CourseCreation(){
     const navigate = useNavigate();
 
     const handleSubmit = () => {
+        const classCodePattern = /^[A-Z]{3,4} \d{3}[A-Z]?$/;
+        const emptyPattern = /^\s*$/;
+
+        if(emptyPattern.test(className)){
+            alert("Class name cannot be empty.");
+            return;
+        }
+
+        if(classCodePattern.test(classCode) == false){
+            alert("Please follow the class code guidelines: The class prefix must be at least 3 capital letters followed by 3 numbers and an optional letter.");
+            return;
+        }
+
         if(window.confirm("Are you sure you want to create this course?")){
             create(className, classCode);
             navigate('/subscribe');
@@ -24,10 +37,10 @@ function CourseCreation(){
             </h1> 
             <form>
                 <label>Course Name:</label>
-                <input type="text" id="className" onChange={(e) => setClassName(e.target.value)}required maxLength="60"/> <br/><br/>
+                <input type="text" id="className" onChange={(e) => setClassName(e.target.value)} maxLength="60"/> <br/><br/>
 
                 <label>Course Code:</label>
-                <input type="text" id="classCode" onChange={(e) => setClassCode(e.target.value)}required /> <br/><br/>
+                <input type="text" id="classCode" onChange={(e) => setClassCode(e.target.value)} /> <br/><br/>
 
             </form>
             <button onClick={() => handleSubmit()}> Submit </button>
@@ -35,6 +48,8 @@ function CourseCreation(){
         </div>
     )
 }
+
+
 
 function create(className, classCode) {
     $.ajax({
