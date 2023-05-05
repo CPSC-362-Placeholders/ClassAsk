@@ -1,15 +1,16 @@
 import {useSearchParams} from "react-router-dom";
 import $ from 'jquery';
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 function CourseThread() {
 
     const [queryParams] = useSearchParams();
     const courseId = queryParams.get("id");
     const [courseName, setCourseName] = useState();
     const [postTitle, setPostTitle] = useState();
-    const navigate = useNavigate();
     const [titleList, setTitleList] = useState();
+    const [postIds, setPostIds] = useState();
+    const navigate = useNavigate();
 
     const getCourseData = () => {
         $.ajax({
@@ -42,6 +43,21 @@ function CourseThread() {
         })
     };
 
+    const getPostId = () => {
+        $.ajax({
+            url: 'http://localhost/classask/src/php/getPostIds.php',
+            type: 'GET',
+            async: false,
+            data: {id:courseId},
+            success: function (data) {
+                setPostIds(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
     const createNewPost = () => {
         navigate('/createpost?id=' + courseId);
         window.location.reload();
@@ -56,17 +72,24 @@ function CourseThread() {
     }, [courseName]);
 
     useEffect(() => {
-       if (postTitle != undefined){
+        getPostId();
+    }, [postTitle]);
+
+    useEffect(() => {
+       if (postTitle !== undefined){
         let titles = JSON.parse(postTitle);
         titles = titles.reverse();
+        let ids = JSON.parse(postIds);
+        ids = ids.reverse();
         let tempText = [];
         for (let i = 0; i < titles.length; ++i) {
-            tempText.push(<p>{titles[i]}</p>);
+            // tempText.push(<p>{titles[i]}</p>);
+            tempText.push(<Link reloadDocument to={"/" + courseId + "/post?id=" + ids[i]}>{titles[i]}</Link>)
             tempText.push(<br/>);
         }
         setTitleList(tempText);
        }
-    },[postTitle]);
+    },[postIds]);
 
     if(courseName !== undefined) {
         return (
