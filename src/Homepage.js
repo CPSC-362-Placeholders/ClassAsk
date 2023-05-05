@@ -76,8 +76,7 @@ function Homepage() {
             let subscribedCoursesArray = JSON.parse(subscribedCourses);
             let tempButtons = [];
             for (let i = 0; i < courseIdsArray.length; ++i) {
-                tempButtons.push(<button
-                    onClick={() => openCourse(courseIdsArray[i])}>{subscribedCoursesArray[i]}</button>);
+                tempButtons.push(<button onClick={() => openCourse(courseIdsArray[i])}>{subscribedCoursesArray[i]}</button>);
                 tempButtons.push(<br/>);
             }
             setButtons(tempButtons);

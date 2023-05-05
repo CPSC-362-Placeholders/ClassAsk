@@ -10,6 +10,7 @@ import CourseThread from "./CourseThread";
 import CourseCreation from "./CourseCreation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from "./CreatePost";
+import Post from "./Post";
 
 function Index() {
     return (
@@ -22,6 +23,7 @@ function Index() {
                 <Route path="/thread" element={<CourseThread/>} />
                 <Route path="/createpost" element={<CreatePost/>} />
                 <Route path="/coursecreation" element={<CourseCreation/>} />
+                <Route path="/:courseCode/post" element={<Post/>} />
             </Routes>
         </BrowserRouter>
     )
