@@ -9,6 +9,7 @@ function CourseThread() {
     const [courseName, setCourseName] = useState();
     const [postTitle, setPostTitle] = useState();
     const navigate = useNavigate();
+    const [titleList, setTitleList] = useState();
 
     const getCourseData = () => {
         $.ajax({
@@ -26,15 +27,6 @@ function CourseThread() {
         });
     }
 
-    const createNewPost = () => {
-        navigate('/createpost?id=' + courseId);
-        window.location.reload();
-    }
-
-    useEffect(() => {
-        getCourseData();
-    }, [])
-
     const getPostTitle = () => {
         $.ajax({
             url: 'http://localhost/classask/src/php/getTitle.php',
@@ -50,11 +42,31 @@ function CourseThread() {
         })
     };
 
+    const createNewPost = () => {
+        navigate('/createpost?id=' + courseId);
+        window.location.reload();
+    }
+
+    useEffect(() => {
+        getCourseData();
+    }, [])
+
     useEffect(() => {
         getPostTitle();
-    }, []);
-//
+    }, [courseName]);
 
+    useEffect(() => {
+       if (postTitle != undefined){
+        let titles = JSON.parse(postTitle);
+        titles = titles.reverse();
+        let tempText = [];
+        for (let i = 0; i < titles.length; ++i) {
+            tempText.push(<p>{titles[i]}</p>);
+            tempText.push(<br/>);
+        }
+        setTitleList(tempText);
+       }
+    },[postTitle]);
 
     if(courseName !== undefined) {
         return (
@@ -62,7 +74,7 @@ function CourseThread() {
                 <h1>
                 {courseName}
                 </h1>
-                {postTitle}
+                {titleList}
                 <br></br><br></br>
                 <button onClick={() => createNewPost()}>Create New Post</button>
             </div>
