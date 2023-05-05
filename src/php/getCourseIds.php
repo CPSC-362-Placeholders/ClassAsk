@@ -7,7 +7,7 @@ if (isset($_GET['courses'])) {
     $courseIds = array();
 
     foreach ($decoded_courses as $course) {
-        $query = "SELECT section_number FROM classlist WHERE class_name='$course'";
+        $query = "SELECT class_code FROM classlist WHERE class_name='$course'";
         $result = mysqli_query($conn, $query);
         array_push($courseIds, mysqli_fetch_array($result)[0]);
     }
