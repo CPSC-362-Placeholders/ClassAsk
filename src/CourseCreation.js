@@ -23,7 +23,7 @@ function CourseCreation(){
 
         if(window.confirm("Are you sure you want to create this course?")){
             create(className, classCode);
-            // navigate('/subscribe');
+            navigate('/subscribe');
         } else {
             
         }
