@@ -7,6 +7,7 @@ function CourseThread() {
     const [queryParams] = useSearchParams();
     const courseId = queryParams.get("id");
     const [courseName, setCourseName] = useState();
+    const [postTitle, setPostTitle] = useState();
     const navigate = useNavigate();
 
     const getCourseData = () => {
@@ -34,16 +35,12 @@ function CourseThread() {
         getCourseData();
     }, [])
 
-
-//useeffect for displaying the posts on screen from the database list
-    const [postTitle, setPostTitle] = useState();
-
-    const getPostTitle = (titles) => {
+    const getPostTitle = () => {
         $.ajax({
             url: 'http://localhost/classask/src/php/getTitle.php',
             type: 'GET',
             async: false,
-            data: {titles:titles},
+            data: {id:courseId},
             success: function (data) {
                 setPostTitle(data);
             },
@@ -63,11 +60,10 @@ function CourseThread() {
         return (
             <div>
                 <h1>
-                    {courseName}
+                {courseName}
                 </h1>
-                <br></br>
                 {postTitle}
-                <br></br>
+                <br></br><br></br>
                 <button onClick={() => createNewPost()}>Create New Post</button>
             </div>
         );
