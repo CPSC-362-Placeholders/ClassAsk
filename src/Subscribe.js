@@ -24,7 +24,7 @@ function Subscribe() {
         }
         $.ajax({
             url: 'http://localhost/classask/src/php/subscribe.php',
-            type: 'POST', //modifies data
+            type: 'POST',
             async: false,
             data: {name: subscribe, email: email},
             success: function (data) {
@@ -44,13 +44,41 @@ function Subscribe() {
         })
     };
 
+   const unSubscribeToClass = () => {
+        console.log(email);
+        if (subscribe === undefined || subscribe === "classPlaceHolder") {
+            alert("invalid class selection");
+            return;
+        }
+        $.ajax({
+            url: 'http://localhost/classask/src/php/unSubscribe.php',
+            type: 'POST',
+            async: false,
+            data: {name: subscribe, email: email},
+            success: function (data) {
+                if (data === "not subbed") {
+                    alert("you are not subscribed to this course, cant unsubscribe");
+                }
+
+                if (data === "remove executed") {
+                    alert("you have removed this course from your list.");
+                    navigate("/homepage"); //remove if we want to allow for multiple deletions insted of redirecting to homepage
+                    window.location.reload();
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    };
+
     const fetchClassList = () => {
         $.ajax({
             url: 'http://localhost/classask/src/php/fetchClassList.php',
             type: 'GET',
             async: false,
             success: function (data) {
-                setCourseList(data);  //console.log(data);
+                setCourseList(data);
             },
             error: function (err) {
                 console.log(err);
@@ -66,9 +94,9 @@ function Subscribe() {
     useEffect(() => {
         if (courseList != null) {
             const dropdown = document.getElementById("classDropdown");
-            const array = JSON.parse(courseList); //checks the string and parses it into an object we can use
-            const convertArray = Object.values(array); //object is being converted to an array each value
-            convertArray.forEach(element => { // for each value named element in the array do work that creates a new element (option) which are then set to the element, which then adds a new line to the dropdown
+            const array = JSON.parse(courseList);
+            const convertArray = Object.values(array);
+            convertArray.forEach(element => {
                 const option = document.createElement("option");
                 option.value = element;
                 option.text = element;
@@ -88,7 +116,9 @@ function Subscribe() {
             <br/>
             <br/>
             <button type="submit" onClick={() => subscribeToClass()}>Subscribe</button>
-
+            <br/>
+            <br/>
+            <button type="submit" onClick={() => unSubscribeToClass()}>un-Subscribe</button>
             <br/>
             <br/>
             <button type="submit" onClick={() => goToCourseCreation()}>Create Course</button>
