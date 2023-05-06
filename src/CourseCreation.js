@@ -60,7 +60,7 @@ function create(className, classCode) {
             if (data === "Already created") {
                 alert("A section already exists for that class! Find it in the subscribe drop down list.");
             } else{
-                alert("Successfully created class. Find it in the subscribe drop down list.");
+                alert("Successfully created class. Find it in the subcribe drop down list.");
             }
         },
         error: function (err) {

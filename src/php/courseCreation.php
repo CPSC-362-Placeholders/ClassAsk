@@ -12,8 +12,8 @@ if(isset($_POST['className']) && $_POST['classCode']) {
         echo "Already created";
         return;
     } else {
-        $query = "INSERT INTO classlist (class_name, class_code, section_number, subject_name, semester) VALUES ('$className', '$classCode', null, null, null)";
-        $result = mysqli_query($conn, $query);
+        $query = "INSERT INTO classlist (class_name, class_code, section_number, subject_name, semester) VALUES ('$className', '$classCode', ' ', ' ',' ')";
+        mysqli_query($conn, $query);
     }
 }
 
