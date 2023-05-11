@@ -16,23 +16,38 @@ function Register(){
     return (
         <div>
             <h1>
-                Create a ClassAsk Account
+                Class
+                <a>ASK</a>
             </h1> 
-            <form>
-                <label>First Name:</label>
-                <input type="text" id="fname" onChange={(e) => setFirstName(e.target.value)}required /> <br/><br/>
+            <form id = "Registration">
+                <ul id = "RegistrationContainer">
+                    <li id= "RegistrationHeader">
+                        <h2>
+                            Class<a>ASK</a> Account Registration
+                        </h2>
+                    </li>
+                    <li className="FirstNameInput">
+                        <input  className="FirstName"  placeholder="First Name"  type="text"  onChange={(e) => setFirstName(e.target.value)}  required />
+                    </li>
+                    
+                    <li className="LastNameInput">
+                        <input  className="LastName"  type="text"  placeholder="Last Name"  onChange={(e) => setLastName(e.target.value)}  required />
+                    </li>
 
-                <label>Last Name:</label>
-                <input type="text" id="lname" onChange={(e) => setLastName(e.target.value)}required /> <br/><br/>
-        
-                <label>CSUF Email:</label>
-                <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} required/> <br/><br/>
+                    <li className="EmailInput">
+                        <input  className="Email"  type="email"  placeholder="CalState Fullerton Email"  onChange={(e) => setEmail(e.target.value)}  required/>
+                    </li>
 
-                <label>Set Password:</label>
-                <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}  required minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/> <br/>
-                <p>  (Password should have at least 1 digit, 1 lowercase letter, 1 uppercase letter, and have a minumum of 8 characters) </p>
+                    <li className="PasswordInput">
+                        <input className="Password"  type="password"  placeholder="Password"  onChange={(e) => setPassword(e.target.value)}  required minLength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+                    </li>
+                    <li className="RegistrationSubmission">
+                        <button onClick={() => handleSubmit()}> Submit </button>
+                    </li>
+                </ul>
             </form>
-            <button onClick={() => handleSubmit()}> Submit </button>
+
+            
         </div>
     )
 }

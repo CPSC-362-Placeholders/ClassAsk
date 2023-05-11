@@ -1,0 +1,35 @@
+html {
+    /* COLOR PALLETE */
+    --univBlue: #00274C;
+    --univOrange:#E17000;
+    --univWhite: #FFFFFF;
+
+    /* THEME PROPERTIES */
+    --userColor: var(--univOrange);
+    --contentColor: var(--univWhite);
+    --backgroundColor: var(--univBlue);
+
+    /* BACKGROUND-COLOR and COLOR SET */
+    color: var(--contentColor);
+    background-color: var(--backgroundColor);
+
+    /* HTML COVERS THE VIEWPORT */
+    height: 100vh;
+}
+
+a {
+    color: var(--userColor);
+}
+
+a:hover { 
+    color: var(--contentColor);
+}
+
+a:active {
+    color: var(--userColor);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}

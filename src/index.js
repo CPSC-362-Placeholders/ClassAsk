@@ -1,6 +1,9 @@
+// IMPORT CSS
+import './index.css';
+import './css/DefaultTheme.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register.js';
 import Login from './Login.js';
@@ -11,6 +14,8 @@ import CourseCreation from "./CourseCreation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from "./CreatePost";
 import Post from "./Post";
+
+
 
 function Index() {
     return (

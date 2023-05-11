@@ -21,23 +21,47 @@ function Login() {
 
     return (
         <>
-            <div>
                 <h1>
-                    Login to your ClassAsk Account!
+                    Class
+                    <a>ASK</a>
                 </h1>
-                <form>
-                    <input type="email" id={"email"} onChange={(e) => setEmail(e.target.value)} placeholder="CSUF Email"/><br></br>
-                    <input type="password" id={"password"} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/><br></br>
-                    <br></br>
-                    <input type="checkbox"/> Remember Me<br></br>
-                    <a href="#">Forgot your password?</a><br></br>
-                    <li>
-                        <Link to={"/register"}>Register for an Account</Link>
-                    </li>
-                </form>
-                <button onClick={() => handleSignIn()}>Sign In</button>
 
-            </div>
+                <form id="Login">
+
+                    <ul id = "LoginContainer">
+
+                        <li className="LoginHeader">
+                            <h2>
+                                Class<a>ASK</a> LogIn
+                            </h2>
+                        </li>
+                        <li className="EmailInput">     
+                            <input  className="Email"  type="email"  onChange={(e) => setEmail(e.target.value)}  placeholder="CSUF Email"/>
+                        </li>
+
+                        <li id = "PasswordInput">
+                            <input className="Password" type="password" onChange={(e) => setPassword(e.target.value)}  placeholder="Password"/>
+                        </li>
+                    
+                        <li id = "ToggleAutoLogIn">
+                            <input className="AutoLogInToggle" type="checkbox"/> Remember Me
+                        </li>
+
+
+                        <li id = "PasswordRecovery">
+                            <a href="#">Forgot your password?</a>
+                        </li>
+
+                        <li id ="AccountRegistration">
+                            <Link to={"/register"}>Register for a ClassASK Account.</Link>
+                        </li>
+
+                        <li className="SignIn">
+                            <button onClick={() => handleSignIn()}>Sign In</button>
+                        </li>
+                    </ul>
+                </form>
+
             <Outlet/>
         </>
     )
