@@ -33,3 +33,17 @@ ul {
     list-style: none;
     padding: 0;
 }
+
+div {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding: 15px;
+}
+
+li {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding: 3px;
+}
